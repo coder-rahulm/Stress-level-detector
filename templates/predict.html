@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Predict - Smartphone Analysis{% endblock %}
+
+{% block content %}
+<div class="card" style="max-width: 800px; margin: 0 auto;">
+    <h2 class="section-title">🤖 Predict Productivity Score</h2>
+    <p>Enter your details below to estimate your work productivity score.</p>
+
+    <form action="/predict" method="POST">
+        {% for col in feature_metadata['numerical'] %}
+        <div class="form-group">
+            <label for="{{ col }}">{{ col }}</label>
+            <input type="number" id="{{ col }}" name="{{ col }}" step="0.1" required>
+        </div>
+        {% endfor %}
+
+        {% for col in feature_metadata['categorical'] %}
+        <div class="form-group">
+            <label for="{{ col }}">{{ col }}</label>
+            <select id="{{ col }}" name="{{ col }}">
+                {% for option in feature_metadata['categorical_options'][col] %}
+                <option value="{{ option }}">{{ option }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="btn">Predict Score</button>
+    </form>
+</div>
+{% endblock %}

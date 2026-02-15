@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Smartphone Analysis{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2 class="section-title">📊 Exploratory Data Analysis</h2>
+    <p>Overview of the dataset and key relationships between smartphone usage and productivity.</p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        <div class="plot-container">
+            <h3>Correlation Heatmap</h3>
+            <img src="data:image/png;base64,{{ heatmap_url }}" class="plot-img" alt="Correlation Heatmap">
+        </div>
+        <div class="plot-container">
+            <h3>Productivity Score Distribution</h3>
+            <img src="data:image/png;base64,{{ dist_url }}" class="plot-img" alt="Productivity Distribution">
+        </div>
+    </div>
+
+    <div class="plot-container">
+        <h3>Usage vs Productivity</h3>
+        <img src="data:image/png;base64,{{ scatter_url }}" class="plot-img" alt="Scatter Plot">
+    </div>
+
+    <h3>Dataset Statistics</h3>
+    <div style="overflow-x: auto;">
+        {{ description|safe }}
+    </div>
+</div>
+{% endblock %}
