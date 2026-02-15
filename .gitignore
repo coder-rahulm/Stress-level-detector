@@ -1,0 +1,4 @@
+productivity_model.pkl
+__pycache__/
+.venv/
+.DS_Store
