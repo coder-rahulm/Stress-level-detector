@@ -35,8 +35,9 @@ preprocessor = ColumnTransformer(
     ])
 
 # Create the model pipeline
+# Optimized for file size to stay under GitHub's 100MB limit
 model = Pipeline(steps=[('preprocessor', preprocessor),
-                        ('regressor', RandomForestRegressor(n_estimators=100, random_state=42))])
+                        ('regressor', RandomForestRegressor(n_estimators=50, max_depth=10, random_state=42))])
 
 # Split the data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
